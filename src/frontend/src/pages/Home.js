@@ -1,9 +1,12 @@
 // src/pages/Home.js
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
+import { FaSearch } from 'react-icons/fa';
 import './Home.css';
 
 function Home() {
+  const [placeholderText, setPlaceholderText] = useState("The next step in AI, personalized AI");
+
   return (
     <div className="home">
       <Navbar />
@@ -16,7 +19,13 @@ function Home() {
           <span>S</span>
         </div>
         <div className="search-bar">
-          <input type="text" placeholder="The new generation of your own AI" />
+          <FaSearch className="search-icon" />
+          <input 
+            type="text" 
+            placeholder={placeholderText} 
+            onFocus={() => setPlaceholderText('')} 
+            onBlur={() => setPlaceholderText("The next step in AI, personalized AI")} 
+          />
         </div>
       </div>
     </div>

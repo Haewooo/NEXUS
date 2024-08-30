@@ -1,20 +1,35 @@
+// src/components/Navbar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { FaUserAlt, FaSearch } from 'react-icons/fa';   
 import './Navbar.css';
 
 function Navbar() {
+  const location = useLocation(); 
+
+  const handleLogin = () => {
+    window.location.href = "https://wallet.near.org"; 
+  };
+
   return (
     <header className="navbar">
       <nav className="nav-links">
-        <a href="#plugins">Plugins</a>
-        <Link to="#community">Community</Link>
-        <Link to="#market">Market</Link>
-        <a href="#news">News</a>
-        <a href="#more">More</a>
+        <Link to="/">Home</Link>
+        <Link to="/community">Community</Link>
+        <Link to="/market">Market</Link>
+        <Link to="/contribution">Contribution</Link>
+        <Link to="/more">More</Link>
       </nav>
       <div className="nav-right">
-        <button className="lang-btn">En</button>
-        <button className="profile-btn">Profile</button>
+        {location.pathname === '/community' || location.pathname === '/market' ? (
+          <div className="navbar-search-bar">
+            <FaSearch className="search-icon" />
+            <input type="text" placeholder="Search..." className="navbar-search-input" />
+          </div>
+        ) : null}
+        <button onClick={handleLogin} style={{ backgroundColor: 'transparent', border: 'none' }}>
+        <FaUserAlt style={{ color: 'white', backgroundColor: 'black', borderRadius: '50%', padding: '5px', fontSize: '24px' }} />
+        </button>
       </div>
     </header>
   );

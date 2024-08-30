@@ -1,45 +1,101 @@
-/* src/components/Navbar.css */
 .navbar {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: black;
-    box-sizing: border-box;
-  }
-  
-  .nav-links {
-    display: flex;
-  }
-  
-  .nav-links a {
-    color: white;
-    margin-right: 20px;
-    text-decoration: none;
-    font-size: 1rem;
-  }
-  
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-  
-  .nav-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .lang-btn, .profile-btn {
-    background: none;
-    border: none;
-    color: white;
-    margin-left: 20px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .lang-btn:hover, .profile-btn:hover {
-    text-decoration: underline;
-  }
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #111; 
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8); 
+  z-index: 1000; 
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease; 
+}
+
+.nav-links a:hover {
+  color: #ffcc00; 
+  text-decoration: underline;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px; 
+}
+
+.navbar-search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #222; 
+  border-radius: 25px;
+  padding: 5px 15px;
+  margin-right: 20px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); 
+  transition: background-color 0.3s ease;
+}
+
+.navbar-search-bar:hover {
+  background-color: #333;
+}
+
+.search-icon {
+  color: #ccc; 
+  margin-right: 10px;
+}
+
+.navbar-search-input {
+  width: 300px;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1rem;
+  color: #fff; 
+  transition: width 0.4s ease; 
+}
+
+.navbar-search-input:focus {
+  width: 350px; 
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5rem;
+  outline: none;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease; 
+}
+
+button:hover {
+  color: #f1f1f1;
+  transform: scale(1.1);
+}
+
+button svg {
+  background-color: transparent;
+  border-radius: 50%; 
+  padding: 5px;
+}
+
+button:focus,
+button:active {
+  outline: none;
+  box-shadow: none;
+}

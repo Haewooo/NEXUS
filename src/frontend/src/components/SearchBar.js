@@ -1,4 +1,5 @@
-import React from 'react';
+// src/components/SearchBar.js
+import React, { useState } from 'react';
 import './SearchBar.css';
 
 function SearchBar({ placeholder }) {
@@ -10,4 +11,3 @@ function SearchBar({ placeholder }) {
 }
 
 export default SearchBar;
-

@@ -1,15 +1,25 @@
-/* src/components/SearchBar.css */
 .search-bar {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .search-bar input {
-    width: 80%;
-    padding: 10px;
-    font-size: 1.2em;
-    border-radius: 25px;
-    border: 1px solid #ccc;
-  }
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 5px 15px;
+}
+
+.search-bar input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1.2em;
+  border-radius: 25px;
+  border: none !important; 
+  outline: none !important; 
+  box-shadow: none !important; 
+  background-color: white; 
+  color: #333;
+}
+
+.search-bar input:focus {
+  border: none !important; 
+  outline: none !important; 
+  box-shadow: none !important; 
+}
