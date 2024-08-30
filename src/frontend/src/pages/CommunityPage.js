@@ -37,7 +37,7 @@ function CommunityPage() {
 
   const handlePageSubmit = (newChallenge) => {
     setChallenges([...challenges, { ...newChallenge, id: challenges.length + 1 }]);
-    setPageOpen(false); // 추가한 뒤 모달 닫기
+    setPageOpen(false); 
   };
 
   return (
@@ -58,7 +58,7 @@ function CommunityPage() {
             </div>
           ))}
         </div>
-        <button className="write-button" onClick={handleWriteButtonClick}>Propose Challenge</button>
+        <button className="-button" onClick={handleWriteButtonClick}>Propose Challenge</button>
       </div>
       {isPageOpen && (
         <ProposalPage 

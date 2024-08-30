@@ -15,7 +15,7 @@ body, html {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 20px 50px;
-  background-color: black;
+  padding: 10px 50px;
+  background-color: transparent;
   box-sizing: border-box;
 }

@@ -15,8 +15,8 @@
   background-color: #fff;
   padding: 40px;
   border-radius: 15px;
-  width: 80%; /* Increase modal width */
-  max-width: 800px; /* Maximum width for larger screens */
+  width: 80%; 
+  max-width: 800px; 
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.3s ease-in-out;
 }
