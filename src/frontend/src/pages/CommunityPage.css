@@ -9,7 +9,7 @@
   width: 80%;
   max-width: 1200px;
   margin-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 50px; 
 }
 
 .model-list {
@@ -19,7 +19,7 @@
 }
 
 .model-item {
-  background-color: white;
+  background-color: silver;
   border: 1px solid #e1e4e8;
   border-radius: 10px;
   padding: 20px;
@@ -61,10 +61,10 @@
   padding: 10px 20px;
   font-size: 1.2rem;
   cursor: pointer;
-  z-index: 1000;
   max-width: 200px; 
   width: auto;
   white-space: nowrap;
+  z-index: 1000;
 }
 
 .write-button:hover {

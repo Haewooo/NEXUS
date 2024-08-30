@@ -2,7 +2,6 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
   font-family: Arial, sans-serif;
 }
 
@@ -12,6 +11,7 @@ canvas {
   left: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .navbar {
@@ -60,11 +60,10 @@ canvas {
 
 .nexus-title span {
   font-size: 4rem;
-  color: #00FFFF; 
+  color: white; 
   text-shadow: 
-    0 0 5px #00FFFF,
-    0 0 10px #00FFFF,
-    0 0 15px #00FFFF;
+    0 0 5px white,
+    0 0 10px white;
   animation: glow 1.5s infinite alternate;
   z-index: 1;
 }
@@ -72,13 +71,11 @@ canvas {
 @keyframes glow {
   0% {
     text-shadow: 
-      0 0 10px #00FFFF,
-      0 0 15px #00FFFF,
+      0 0 10px white,
   }
   100% {
     text-shadow: 
-      0 0 15px #00FFFF,
-      0 0 20px #00FFFF,
+      0 0 15px white,
 
   }
 }

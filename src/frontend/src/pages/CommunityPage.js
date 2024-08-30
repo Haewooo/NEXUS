@@ -58,7 +58,7 @@ function CommunityPage() {
             </div>
           ))}
         </div>
-        <button className="-button" onClick={handleWriteButtonClick}>Propose Challenge</button>
+        <button className="write-button" onClick={handleWriteButtonClick}>Propose Challenge</button>
       </div>
       {isPageOpen && (
         <ProposalPage 

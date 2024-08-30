@@ -16,6 +16,6 @@ body, html {
   justify-content: flex-end;
   align-items: center;
   padding: 10px 50px;
-  background-color: transparent;
+  background-color: black;
   box-sizing: border-box;
 }
