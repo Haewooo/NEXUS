@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/near_ai_platfor
 app.use('/api/challenges', challengeRoutes);
 app.use('/api/upload', uploadRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

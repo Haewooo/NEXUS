@@ -1,16 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "NODE_OPTIONS=--openssl-legacy-provider concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server.js",
     "client": "npm start --prefix ../src/frontend"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "compression": "^1.7.4",
     "concurrently": "^8.2.2",
@@ -19,15 +15,5 @@
     "helmet": "^7.1.0",
     "mongoose": "^8.6.0",
     "nodemon": "^3.1.4"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-private-methods",
-      "@babel/plugin-proposal-class-properties"
-    ]
   }
 }
