@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaUserAlt, FaSearch } from 'react-icons/fa';   
-import './Navbar.css';
+import '../styles/Navbar.css';
 
 function Navbar() {
   const location = useLocation(); 

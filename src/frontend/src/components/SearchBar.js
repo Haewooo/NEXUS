@@ -1,6 +1,6 @@
 // src/components/SearchBar.js
 import React, { useState } from 'react';
-import './SearchBar.css';
+import '../styles/SearchBar.css';
 
 function SearchBar({ placeholder }) {
   return (

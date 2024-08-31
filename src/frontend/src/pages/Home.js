@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import { FaSearch } from 'react-icons/fa';
-import './Home.css';
+import '../styles/Home.css';
 
 function Home() {
   const [placeholderText, setPlaceholderText] = useState("The next step, personalized AI");

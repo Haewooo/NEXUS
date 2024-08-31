@@ -1,15 +1,34 @@
 // src/components/ProposalPage.js
 import React, { useState } from 'react';
-import './ProposalPage.css';
+import '../styles/ProposalPage.css';
 
 function ProposalPage({ isOpen, onClose, onSubmit }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = () => {
-    onSubmit({ title, description, tags: tags.split(',').map(tag => tag.trim()) });
-    onClose(); 
+  const handleSubmit = async () => {
+    if (!title || !description || !tags) {
+      setError('All fields are required.');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      await onSubmit({ title, description, tags: tags.split(',').map(tag => tag.trim()) });
+      setTitle('');
+      setDescription('');
+      setTags('');
+      setError('');
+      onClose();
+    } catch (err) {
+      setError('Failed to submit proposal. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -18,6 +37,7 @@ function ProposalPage({ isOpen, onClose, onSubmit }) {
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>New Proposal</h2>
+        {error && <p className="error-message">{error}</p>}
         <input
           type="text"
           placeholder="Title"
@@ -37,8 +57,10 @@ function ProposalPage({ isOpen, onClose, onSubmit }) {
           onChange={(e) => setTags(e.target.value)}
         />
         <div className="modal-buttons">
-          <button className="submit-button" onClick={handleSubmit}>Submit</button>
-          <button className="cancel-button" onClick={onClose}>Cancel</button>
+          <button className="cancel-button" onClick={onClose} disabled={isLoading}>Cancel</button>
+          <button className="submit-button" onClick={handleSubmit} disabled={isLoading}>
+            {isLoading ? 'Submitting...' : 'Submit'}
+          </button>
         </div>
       </div>
     </div>

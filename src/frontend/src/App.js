@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/community" element={<CommunityPage />} />
         <Route path="/market" element={<MarketPage />} />
-        <Route path="/challenge/:id" component={UploadPage} />
+        <Route path="/challenge/:id" element={<UploadPage />} />  {/* 수정된 부분 */}
       </Routes>
     </Router>
   );

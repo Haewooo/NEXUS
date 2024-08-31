@@ -1,7 +1,7 @@
 // src/pages/MarketPage.js
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import './MarketPage.css';
+import '../styles/MarketPage.css';
 
 function MarketPage() {
   const [aiModels, setAiModels] = useState([]);
@@ -9,9 +9,9 @@ function MarketPage() {
   useEffect(() => {
     // Example
     const mockModels = [
-      { id: 1, name: 'AI Model', description: 'A powerful AI model for image recognition', price: '10 NEAR', imageUrl: '/images/ai1.png' },
-      { id: 2, name: 'AI Model', description: 'AI model for predictive analytics', price: '15 NEAR', imageUrl: '/images/ai2.png' },
-      { id: 3, name: 'AI Model', description: 'Natural Language Processing AI model', price: '12 NEAR', imageUrl: '/images/ai3.png' }
+      { id: 1, name: 'AI Model', description: 'A powerful AI model for image recognition', price: '10 NEAR', imageUrl: '/images/ai.png' },
+      { id: 2, name: 'AI Model', description: 'AI model for predictive analytics', price: '15 NEAR', imageUrl: '/images/ai.png' },
+      { id: 3, name: 'AI Model', description: 'Natural Language Processing AI model', price: '12 NEAR', imageUrl: '/images/ai.png' }
     ];
     setAiModels(mockModels);
   }, []);

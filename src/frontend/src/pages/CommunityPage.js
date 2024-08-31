@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import ProposalPage from './ProposalPage';
 import Navbar from '../components/Navbar';
-import './CommunityPage.css';
+import '../styles/CommunityPage.css';
 import { useNavigate } from 'react-router-dom';
 
 function CommunityPage() {
@@ -36,8 +36,12 @@ function CommunityPage() {
   };
 
   const handlePageSubmit = (newChallenge) => {
-    setChallenges([...challenges, { ...newChallenge, id: challenges.length + 1 }]);
-    setPageOpen(false); 
+    if (newChallenge.title && newChallenge.description) {
+      setChallenges([...challenges, { ...newChallenge, id: challenges.length + 1 }]);
+      setPageOpen(false); 
+    } else {
+      alert("Fill in all the fields.");
+    }
   };
 
   return (
