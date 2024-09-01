@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import '../styles/ProposalPage.css';
 
-function ProposalPage({ isOpen, onClose, onSubmit }) {
+function ProposalPage({ isOpen, onClose, onSubmit, challengeId, createdBy }) {  // challengeId와 createdBy를 prop으로 추가
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState('');
@@ -18,7 +18,13 @@ function ProposalPage({ isOpen, onClose, onSubmit }) {
     setIsLoading(true);
 
     try {
-      await onSubmit({ title, description, tags: tags.split(',').map(tag => tag.trim()) });
+      await onSubmit({ 
+        challengeId,
+        title, 
+        description, 
+        tags: tags.split(',').map(tag => tag.trim()), 
+        createdBy
+      });
       setTitle('');
       setDescription('');
       setTags('');
@@ -39,6 +45,7 @@ function ProposalPage({ isOpen, onClose, onSubmit }) {
         <h2>New Proposal</h2>
         {error && <p className="error-message">{error}</p>}
         <input
+          id="title"
           type="text"
           placeholder="Title"
           value={title}
@@ -51,6 +58,7 @@ function ProposalPage({ isOpen, onClose, onSubmit }) {
           rows="8"
         ></textarea>
         <input
+          id="title"
           type="text"
           placeholder="Tags (comma-separated)"
           value={tags}

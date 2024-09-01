@@ -67,6 +67,7 @@ function Home() {
         <div className="search-bar">
           <FaSearch className="search-icon" />
           <input 
+            id="title"
             type="text" 
             placeholder={placeholderText} 
             onFocus={() => setPlaceholderText('')} 

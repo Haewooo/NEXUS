@@ -3,17 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ethers } from 'ethers';
 import Navbar from '../components/Navbar';
-import VoteComponent from '../components/VoteComponent'; 
+import VoteComponent from '../components/VoteComponent';
 import '../styles/UploadPage.css';
 
 function UploadPage() {
-  const { id } = useParams();  
+  const { id } = useParams();
   const [dataset, setDataset] = useState(null);
   const [model, setModel] = useState(null);
   const [challenge, setChallenge] = useState(null);
   const [voteStatus, setVoteStatus] = useState(null);
 
-  const contractAddress = "스마트 컨트랙트 주소"; 
+  const contractAddress = "스마트 컨트랙트 주소";
   const contractABI = [
     "function getProposalStatus(uint256 _proposalId) public view returns (bool)"
   ];
@@ -25,8 +25,7 @@ function UploadPage() {
     }
 
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      await provider.send('eth_requestAccounts', []);
+      const provider = new ethers.BrowserProvider(window.ethereum);
       const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
       const status = await contract.getProposalStatus(id);
@@ -53,7 +52,6 @@ function UploadPage() {
 
     fetchChallengeData();
     fetchVoteStatus();
-
   }, [id]);
 
   const handleDatasetChange = (e) => {
@@ -107,8 +105,8 @@ function UploadPage() {
         {voteStatus === 'ongoing' ? (
           <VoteComponent
             proposalId={id}
-            contractAddress={contractAddress} 
-            contractABI={contractABI}  
+            contractAddress={contractAddress}
+            contractABI={contractABI}
           />
         ) : (
           <div>

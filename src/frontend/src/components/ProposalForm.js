@@ -5,23 +5,45 @@ const ProposalForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch("/api/dao/create-proposal", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description }),
-    });
-    if (response.ok) {
-      alert("Proposal created successfully!");
-    } else {
-      alert("Failed to create proposal.");
+  const handleSubmit = async () => {
+    if (!title || !description || !tags) {
+      setError('All fields are required.');
+      return;
+    }
+  
+    setIsLoading(true);
+  
+    try {
+      const response = await fetch('/api/challenges', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title, description, tags: tags.split(',').map(tag => tag.trim()) }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to submit challenge');
+      }
+  
+      const result = await response.json();
+      await onSubmit(result);
+      setTitle('');
+      setDescription('');
+      setTags('');
+      setError('');
+      onClose();
+    } catch (err) {
+      setError('Failed to submit proposal. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
+        id="title"
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}

@@ -16,15 +16,13 @@ function VoteComponent({ proposalId, contractAddress, contractABI }) {
     setError(null);
 
     try {
-      // 메타마스크 연결
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      await provider.send('eth_requestAccounts', []);
+      const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = provider.getSigner();
 
       const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
       const tx = await contract.voteOnProposal(proposalId, voteType);
-      await tx.wait(); 
+      await tx.wait();
 
       setVote(voteType);
     } catch (err) {
