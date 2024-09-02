@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import CommunityPage from './pages/CommunityPage';
 import MarketPage from './pages/MarketPage';
 import UploadPage from './pages/UploadPage';
+import LoginPage from './pages/LoginPage'; 
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,12 +18,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route 
-          path="/community" 
-          element={<CommunityPage onSearch={handleSearch} searchQuery={searchQuery} />} 
-        />
+        <Route path="/community" element={<CommunityPage onSearch={handleSearch} searchQuery={searchQuery} />} />
         <Route path="/market" element={<MarketPage />} />
         <Route path="/challenge/:id" element={<UploadPage />} />
+        <Route path="/login" element={<LoginPage />} />  
       </Routes>
     </Router>
   );

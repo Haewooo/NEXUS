@@ -5,6 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 
+const authRoutes = require('./routes/authRoutes');
 const challengeRoutes = require('./routes/ChallengeRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const daoRoutes = require('./routes/daoRoutes');
@@ -18,6 +19,7 @@ app.use(compression());
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use('/api/auth', authRoutes);
 app.use('/api/challenges', challengeRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/dao', daoRoutes);

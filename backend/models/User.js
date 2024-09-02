@@ -1,9 +1,12 @@
+// backend/models/User.js
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    name: { type: String, required: true },
+    email: { type: String, unique: true },
+    password: { type: String },
+    name: { type: String },
+    walletAddress: { type: String, unique: true },
+    nearAccountId: { type: String, unique: true },
     createdAt: { type: Date, default: Date.now },
 });
 

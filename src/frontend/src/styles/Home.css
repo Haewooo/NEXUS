@@ -82,7 +82,7 @@ canvas {
 
 .search-bar {
   width: 100%;
-  max-width: 800px;
+  width: 800px;
   display: flex;
   align-items: center;
   background-color: white;
@@ -99,7 +99,7 @@ canvas {
 }
 
 .search-bar input {
-  width: 50%;
+  width: 100%;
   border: none;
   outline: none;
   font-size: 1rem;

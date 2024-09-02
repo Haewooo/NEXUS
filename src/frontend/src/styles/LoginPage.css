@@ -1,0 +1,78 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f2f5;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.metamask-button {
+    background-color: #f6851b;
+    color: white;
+}
+
+.metamask-button:hover {
+    background-color: #e2741d;
+}
+
+.near-button {
+    background-color: #5a67d8;
+    color: white;
+}
+
+.near-button:hover {
+    background-color: #4c51bf;
+}
+
+.icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
