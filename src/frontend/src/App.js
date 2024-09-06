@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import CommunityPage from './pages/CommunityPage';
 import MarketPage from './pages/MarketPage';
 import UploadPage from './pages/UploadPage';
+import ContributionPage from './pages/ContributionPage';
 import LoginPage from './pages/LoginPage'; 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/community" element={<CommunityPage onSearch={handleSearch} searchQuery={searchQuery} />} />
         <Route path="/market" element={<MarketPage />} />
         <Route path="/challenge/:id" element={<UploadPage />} />
+        <Route path="/contribution" element={<ContributionPage />} />
         <Route path="/login" element={<LoginPage />} />  
       </Routes>
     </Router>

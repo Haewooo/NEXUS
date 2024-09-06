@@ -1,11 +1,12 @@
 // backend/routes/LoginRoutes.js
+// backend/routes/LoginRoutes.js
 const express = require('express');
 const User = require('../models/User');
 
 const router = express.Router();
 
 router.post('/metamask-login', async (req, res) => {
-    const { walletAddress } = req.body;
+    const { walletAddress } = req.body;  // 입력받은 MetaMask 지갑 주소
 
     try {
         let user = await User.findOne({ walletAddress });
@@ -22,7 +23,7 @@ router.post('/metamask-login', async (req, res) => {
 });
 
 router.post('/near-login', async (req, res) => {
-    const { nearAccountId } = req.body;
+    const { nearAccountId } = req.body;  // 클라이언트에서 받은 NEAR 계정 ID
 
     try {
         let user = await User.findOne({ nearAccountId });

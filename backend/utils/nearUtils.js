@@ -1,15 +1,23 @@
-const { connect, WalletConnection } = require("near-api-js");
+// backend/utils/nearUtils.js
+import { connect, keyStores, WalletConnection } from 'near-api-js';
 
-async function initNear() {
-    const near = await connect({
-        networkId: "default",
-        keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-        nodeUrl: "https://rpc.testnet.near.org",
-        walletUrl: "https://wallet.testnet.near.org",
-        helperUrl: "https://helper.testnet.near.org",
-        explorerUrl: "https://explorer.testnet.near.org"
-    });
+const nearConfig = {
+  networkId: 'default',
+  keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+  nodeUrl: 'https://rpc.mainnet.near.org',
+  walletUrl: 'https://wallet.near.org',
+  helperUrl: 'https://helper.mainnet.near.org',
+  explorerUrl: 'https://explorer.mainnet.near.org',
+};
 
-    const wallet = new WalletConnection(near);
-    return wallet;
+export async function loginWithNEAR() {
+  const near = await connect(nearConfig);
+  const walletConnection = new WalletConnection(near, null);
+
+  if (!walletConnection.isSignedIn()) {
+    walletConnection.requestSignIn("near-ai-nexus.testnet");
+  } else {
+    const accountId = walletConnection.getAccountId();
+    console.log(`Logged in as: ${accountId}`);
+  }
 }

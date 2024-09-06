@@ -14,16 +14,25 @@ function CommunityPage({ searchQuery, onSearch }) {
   useEffect(() => {
     const fetchChallenges = async () => {
       try {
-        const url = searchQuery ? `/api/challenges?search=${searchQuery}` : '/api/challenges';
+        const url = searchQuery 
+          ? `http://localhost:4000/api/challenges?search=${searchQuery}` 
+          : 'http://localhost:4000/api/challenges';
         const response = await fetch(url);
+    
+        if (!response.ok) {
+          throw new Error('Failed to fetch challenges');
+        }
         const data = await response.json();
         setChallenges(data);
         setFilteredChallenges(data);
       } catch (error) {
         console.error('Failed to fetch challenges:', error);
+        setChallenges([]);  
+        setFilteredChallenges([]);  
       }
     };
-    fetchChallenges();
+  
+    fetchChallenges();  // 컴포넌트가 마운트될 때 챌린지를 불러옴
   }, [searchQuery]);
 
   useEffect(() => {
@@ -53,7 +62,7 @@ function CommunityPage({ searchQuery, onSearch }) {
   const handlePageSubmit = async (newChallenge) => {
     if (newChallenge.title && newChallenge.description) {
       try {
-        const response = await fetch('/api/challenges', {
+        const response = await fetch('http://localhost:4000/api/challenges', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

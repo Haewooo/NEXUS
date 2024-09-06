@@ -1,3 +1,4 @@
+// backend/config/nearConfig.js
 const nearAPI = require('near-api-js');
 
 const nearConfig = {
