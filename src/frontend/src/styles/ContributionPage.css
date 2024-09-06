@@ -1,49 +1,40 @@
-.contribution-page {
+.chart-wrapper {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 50px 20px;
-  text-align: center;
-  background-color: #000;
-}
-
-.content-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.contribution-list {
-  margin: 20px 0;
+  align-items: flex-end; 
+  height: 100%; 
 }
 
 .chart-container {
+  width: 60%;
+  height: 300px;
+  margin: 0 auto;
+}
+.contribution-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contribution-content {
   width: 100%;
-  max-width: 800px; 
-  margin-top: 50px;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.contribution-list {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 40px;
 }
 
 .contribution-item {
-  margin-bottom: 20px;
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
 }
 
 .withdraw-button {
   margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  align-items: center;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.withdraw-button:disabled {
-  background-color: #ddd;
-  cursor: not-allowed;
 }

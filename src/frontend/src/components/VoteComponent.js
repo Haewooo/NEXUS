@@ -1,5 +1,7 @@
+// src/frontend/src/components/VoteComponent.js
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
+import '../styles/VoteComponent.css'; 
 
 function VoteComponent({ proposalId, contractAddress, contractABI }) {
   const [vote, setVote] = useState(null);
@@ -33,25 +35,27 @@ function VoteComponent({ proposalId, contractAddress, contractABI }) {
   };
 
   return (
-    <div className="vote-component">
-      <h3>Vote on Proposal</h3>
-      <button
-        onClick={() => handleVote(true)}
-        disabled={loading || vote === true}
-        style={{ backgroundColor: vote === true ? 'green' : '' }}
-      >
-        Vote Yes
-      </button>
-      <button
-        onClick={() => handleVote(false)}
-        disabled={loading || vote === false}
-        style={{ backgroundColor: vote === false ? 'red' : '' }}
-      >
-        Vote No
-      </button>
-      {loading && <p>Submitting vote...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {vote !== null && <p>You've voted: {vote ? 'Yes' : 'No'}</p>}
+    <div className="vote-component-card">
+      <h3>Vote on Proposal #{proposalId}</h3>
+      <div className="vote-buttons">
+        <button
+          onClick={() => handleVote(true)}
+          disabled={loading || vote === true}
+          className={`vote-button yes-button ${vote === true ? 'selected' : ''}`}
+        >
+          Yes
+        </button>
+        <button
+          onClick={() => handleVote(false)}
+          disabled={loading || vote === false}
+          className={`vote-button no-button ${vote === false ? 'selected' : ''}`}
+        >
+          No
+        </button>
+      </div>
+      {loading && <div className="loading-spinner"></div>}
+      {error && <p className="error-message">{error}</p>}
+      {vote !== null && <p className="vote-result">You've voted: {vote ? 'Yes' : 'No'}</p>}
     </div>
   );
 }

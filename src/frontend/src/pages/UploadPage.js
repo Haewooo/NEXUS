@@ -13,11 +13,12 @@ function UploadPage() {
   const [challenge, setChallenge] = useState(null);
   const [voteStatus, setVoteStatus] = useState(null);
 
-  const contractAddress = "스마트 컨트랙트 주소";
+  const contractAddress = "스마트 컨트랙트 주소"; 
   const contractABI = [
     "function getProposalStatus(uint256 _proposalId) public view returns (bool)"
   ];
 
+  // 투표 상태를 블록체인에서 가져오는 함수
   const fetchVoteStatus = async () => {
     if (!window.ethereum) {
       console.error('MetaMask is not installed');
@@ -35,6 +36,7 @@ function UploadPage() {
     }
   };
 
+  // 챌린지 데이터를 불러오는 함수
   useEffect(() => {
     const fetchChallengeData = async () => {
       try {
@@ -52,7 +54,7 @@ function UploadPage() {
 
     fetchChallengeData();
     fetchVoteStatus();
-  }, [id]);
+  }, [id, fetchVoteStatus]);
 
   const handleDatasetChange = (e) => {
     setDataset(e.target.files[0]);
@@ -102,14 +104,9 @@ function UploadPage() {
           <p>Loading challenge data...</p>
         )}
 
-        {voteStatus === 'ongoing' ? (
-          <VoteComponent
-            proposalId={id}
-            contractAddress={contractAddress}
-            contractABI={contractABI}
-          />
-        ) : (
+        {voteStatus === 'finished' ? (  // 투표 완료 상태일 때만 업로드 허용
           <div>
+            <h2>Voting Completed! You can now upload your model or dataset.</h2>
             <div className="upload-section">
               <label htmlFor="dataset-upload">Upload Dataset:</label>
               <input type="file" id="dataset-upload" onChange={handleDatasetChange} />
@@ -119,6 +116,15 @@ function UploadPage() {
               <input type="file" id="model-upload" onChange={handleModelChange} />
             </div>
             <button onClick={handleUpload}>Upload</button>
+          </div>
+        ) : (
+          <div>
+            <h2>Voting Ongoing</h2>
+            <VoteComponent
+              proposalId={id}
+              contractAddress={contractAddress}
+              contractABI={contractABI}
+            />
           </div>
         )}
       </div>

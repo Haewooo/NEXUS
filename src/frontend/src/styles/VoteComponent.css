@@ -1,0 +1,80 @@
+.vote-component-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .vote-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .vote-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    flex: 1;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .vote-button:last-child {
+    margin-right: 0;
+  }
+  
+  .yes-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+  }
+  
+  .no-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+  }
+  
+  .yes-button:hover {
+    background-color: #45a049;
+  }
+  
+  .no-button:hover {
+    background-color: #e53935;
+  }
+  
+  .selected {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .loading-spinner {
+    margin-top: 10px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #4caf50;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .vote-result {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #4caf50;
+  }
