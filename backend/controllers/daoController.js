@@ -1,3 +1,4 @@
+// backend/controllers/daoController.js
 const { connect, keyStores, WalletConnection } = require('near-api-js');
 const nearConfig = require('../config/nearConfig');
 

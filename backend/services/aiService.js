@@ -1,0 +1,1 @@
+// backend/services/aiService.js gpt api로 구현할 예정

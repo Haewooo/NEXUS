@@ -1,20 +1,21 @@
 // src/components/Navbar.js
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { FaUserAlt, FaSearch } from 'react-icons/fa';   
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FaUserAlt, FaSearch } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 function Navbar({ onSearch }) {
-  const location = useLocation(); 
+  const location = useLocation();
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
 
   const handleLogin = () => {
-    window.location.href = "https://wallet.near.org"; 
+    navigate('/login');
   };
 
   const handleSearch = (e) => {
     if (onSearch) {
-      onSearch(e.target.value);  
+      onSearch(e.target.value);
     }
   };
 

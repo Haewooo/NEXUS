@@ -3,12 +3,10 @@
   flex-direction: column;
   align-items: center;
   padding-top: 100px;
-  background-color: #f4f4f4;
   min-height: 100vh;
 }
 
 .upload-container {
-  background: #ffffff;
   border-radius: 8px;
   padding: 40px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
