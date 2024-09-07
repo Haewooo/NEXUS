@@ -1,7 +1,7 @@
 // src/pages/UploadPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ethers } from 'ethers';
+import { connect, Contract, keyStores, WalletConnection } from "near-api-js";
 import Navbar from '../components/Navbar';
 import VoteComponent from '../components/VoteComponent';
 import '../styles/UploadPage.css';
@@ -12,31 +12,40 @@ function UploadPage() {
   const [model, setModel] = useState(null);
   const [challenge, setChallenge] = useState(null);
   const [voteStatus, setVoteStatus] = useState(null);
+  const [error, setError] = useState(null);  // Add error state for graceful error handling
 
-  const contractAddress = "스마트 컨트랙트 주소"; 
-  const contractABI = [
-    "function getProposalStatus(uint256 _proposalId) public view returns (bool)"
-  ];
+  const contractAddress = "near-ai-nexus.testnet";
 
-  // 투표 상태를 블록체인에서 가져오는 함수
+  // Fetch voting status from NEAR contract
   const fetchVoteStatus = async () => {
-    if (!window.ethereum) {
-      console.error('MetaMask is not installed');
-      return;
-    }
-
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const contract = new ethers.Contract(contractAddress, contractABI, provider);
+      const nearConfig = {
+        networkId: "testnet",
+        keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+        nodeUrl: "https://rpc.testnet.near.org",
+        walletUrl: "https://wallet.testnet.near.org",
+        contractId: contractAddress,
+      };
 
-      const status = await contract.getProposalStatus(id);
+      const near = await connect(nearConfig);
+      const walletConnection = new WalletConnection(near);
+
+      const accountId = walletConnection.getAccountId(); // Get logged in account ID
+      const account = await near.account(accountId);
+
+      const contract = new Contract(account, contractAddress, {
+        viewMethods: ['getProposalStatus'],
+        changeMethods: [], 
+      });
+
+      const status = await contract.getProposalStatus({ _proposalId: id });
       setVoteStatus(status ? 'finished' : 'ongoing');
     } catch (error) {
-      console.error('Error fetching vote status from blockchain:', error);
+      console.error('Error fetching vote status from NEAR:', error);
+      setError('Error fetching vote status');  // Set error message if any issue
     }
   };
 
-  // 챌린지 데이터를 불러오는 함수
   useEffect(() => {
     const fetchChallengeData = async () => {
       try {
@@ -49,20 +58,16 @@ function UploadPage() {
         }
       } catch (error) {
         console.error('Error fetching challenge data:', error);
+        setError('Failed to load challenge details');  // Set an error message
       }
     };
 
     fetchChallengeData();
     fetchVoteStatus();
-  }, [id, fetchVoteStatus]);
+  }, [id]);
 
-  const handleDatasetChange = (e) => {
-    setDataset(e.target.files[0]);
-  };
-
-  const handleModelChange = (e) => {
-    setModel(e.target.files[0]);
-  };
+  const handleDatasetChange = (e) => setDataset(e.target.files[0]);
+  const handleModelChange = (e) => setModel(e.target.files[0]);
 
   const handleUpload = async () => {
     const formData = new FormData();
@@ -90,21 +95,19 @@ function UploadPage() {
       <Navbar />
       <div className="upload-container">
         <h1>Upload Model or Dataset</h1>
+
+        {error && <p className="error-message">{error}</p>}  {/* Display error message if any */}
+
         {challenge ? (
           <div className="challenge-details">
             <h2>{challenge.title}</h2>
             <p>{challenge.description}</p>
-            <div className="tags">
-              {challenge.tags.map((tag, index) => (
-                <span key={index} className="tag">{tag}</span>
-              ))}
-            </div>
           </div>
         ) : (
           <p>Loading challenge data...</p>
         )}
 
-        {voteStatus === 'finished' ? (  // 투표 완료 상태일 때만 업로드 허용
+        {voteStatus === 'finished' || voteStatus === 'ongoing' ? (
           <div>
             <h2>Voting Completed! You can now upload your model or dataset.</h2>
             <div className="upload-section">
@@ -123,7 +126,6 @@ function UploadPage() {
             <VoteComponent
               proposalId={id}
               contractAddress={contractAddress}
-              contractABI={contractABI}
             />
           </div>
         )}

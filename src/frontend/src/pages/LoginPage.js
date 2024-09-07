@@ -1,8 +1,7 @@
 // src/frontend/src/pages/LoginPage.js
 import React from 'react';
-import { FaEthereum } from 'react-icons/fa';
+import { initNear } from './near-utils';
 import '../styles/LoginPage.css';
-import { initNear } from '../utils/nearUtils'; // Ensure nearUtils is correctly linked
 
 async function loginWithMetaMask() {
   if (typeof window.ethereum !== 'undefined') {
@@ -47,7 +46,7 @@ function LoginPage() {
         <h2 className="login-title">Login</h2>
         <div className="login-buttons">
           <button className="login-button metamask-button" onClick={loginWithMetaMask}>
-            <FaEthereum className="icon" />
+            <initNear className="icon" />
             Login with MetaMask
           </button>
           <button className="login-button near-button" onClick={loginWithNEAR}>

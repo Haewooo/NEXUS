@@ -13,8 +13,8 @@ async function submitContribution(req, res) {
             userId,
             task,
             type,
-            dataset,  // 업로드된 데이터셋 경로
-            model,    // 업로드된 모델 경로
+            dataset,  
+            model,    
             score, 
             reward: score * 0.1,
         });

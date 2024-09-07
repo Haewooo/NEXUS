@@ -8,7 +8,6 @@ const ContributionSchema = new mongoose.Schema({
   type: { type: String, required: true },  // Type of contribution
   reward: { type: Number, default: 0 },    // Reward amount (tokens)
   score: { type: Number, default: 0 },     // AI contribution score
-  percentile: { type: Number, default: 0 }, // 백분위 점수 저장 
   createdAt: { type: Date, default: Date.now },
 });
 

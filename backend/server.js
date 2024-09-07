@@ -7,7 +7,6 @@ const helmet = require('helmet');
 const compression = require('compression');
 const challengeRoutes = require('./routes/challengeRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
-const daoRoutes = require('./routes/daoRoutes');
 const contributionRoutes = require('./routes/ContributionRoutes');
 const loginRoutes = require('./routes/LoginRoutes'); 
 
@@ -39,9 +38,8 @@ mongoose.connect('mongodb://localhost/near_ai_platform', {
 // 라우트 설정
 app.use('/api/challenges', challengeRoutes);
 app.use('/api/upload', uploadRoutes);
-app.use('/api/dao', daoRoutes);
 app.use('/api/contributions', contributionRoutes);
-app.use('/api/login', loginRoutes);  // 로그인 관련 라우트 설정
+app.use('/api/login', loginRoutes);  
 
 // 404 에러 처리 (라우트가 존재하지 않을 경우)
 app.use((req, res, next) => {

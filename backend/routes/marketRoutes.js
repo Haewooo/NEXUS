@@ -22,8 +22,6 @@ router.post('/add-to-market', async (req, res) => {
     res.status(500).json({ message: 'Failed to add model to market' });
   }
 });
-
-// Get all models from market
 router.get('/get-models', async (req, res) => {
   try {
     const models = await MarketModel.find();

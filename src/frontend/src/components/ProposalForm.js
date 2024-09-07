@@ -5,7 +5,7 @@ const ProposalForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = async () => {
+  const handle = async () => {
     if (!title || !description || !tags) {
       setError('All fields are required.');
       return;

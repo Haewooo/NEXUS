@@ -2,7 +2,7 @@
 const { connect, keyStores, WalletConnection } = require('near-api-js');
 const fetch = require('node-fetch');
 
-// NEAR API로 기여자에게 보상을 지급하는 함수
+// NEAR API로 기여자에게 보상을 지급
 async function distributeRewards(userId, rewardAmount) {
   const nearConfig = {
     networkId: "testnet",

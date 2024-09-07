@@ -32,7 +32,6 @@ function ContributionChart({ contributions }) {
 
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
@@ -47,7 +46,7 @@ function ContributionChart({ contributions }) {
 
   return (
     <div className="chart-wrapper">
-      <div className="chart-container" style={{ margin: '0 auto', width: '60%', height: '300px' }}>
+      <div className="chart-container">
         <Bar data={chartData} options={chartOptions} />
       </div>
     </div>
