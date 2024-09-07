@@ -1,4 +1,3 @@
-// src/pages/UploadPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ethers } from 'ethers';
@@ -54,7 +53,7 @@ function UploadPage() {
 
     fetchChallengeData();
     fetchVoteStatus();
-  }, [id, fetchVoteStatus]);
+  }, [id]);
 
   const handleDatasetChange = (e) => {
     setDataset(e.target.files[0]);
@@ -104,29 +103,27 @@ function UploadPage() {
           <p>Loading challenge data...</p>
         )}
 
-        {voteStatus === 'finished' ? (  // 투표 완료 상태일 때만 업로드 허용
-          <div>
-            <h2>Voting Completed! You can now upload your model or dataset.</h2>
-            <div className="upload-section">
-              <label htmlFor="dataset-upload">Upload Dataset:</label>
-              <input type="file" id="dataset-upload" onChange={handleDatasetChange} />
-            </div>
-            <div className="upload-section">
-              <label htmlFor="model-upload">Upload AI Model:</label>
-              <input type="file" id="model-upload" onChange={handleModelChange} />
-            </div>
-            <button onClick={handleUpload}>Upload</button>
+        <div>
+          <h2>Upload your model or dataset here:</h2>
+          <div className="upload-section">
+            <label htmlFor="dataset-upload">Upload Dataset:</label>
+            <input type="file" id="dataset-upload" onChange={handleDatasetChange} />
           </div>
-        ) : (
-          <div>
-            <h2>Voting Ongoing</h2>
-            <VoteComponent
-              proposalId={id}
-              contractAddress={contractAddress}
-              contractABI={contractABI}
-            />
+          <div className="upload-section">
+            <label htmlFor="model-upload">Upload AI Model:</label>
+            <input type="file" id="model-upload" onChange={handleModelChange} />
           </div>
-        )}
+          <button onClick={handleUpload}>Upload</button>
+        </div>
+
+        <div>
+          <h2>Voting Component</h2>
+          <VoteComponent
+            proposalId={id}
+            contractAddress={contractAddress}
+            contractABI={contractABI}
+          />
+        </div>
       </div>
     </div>
   );
